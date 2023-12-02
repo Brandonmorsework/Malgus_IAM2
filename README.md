@@ -4,7 +4,7 @@
 
 Greetings, brave developer! You have stumbled upon the repository of immense power – the Dark Side Deployment Portal. Here, the Force of Infrastructure is harnessed to shape the destiny of the galaxy. Join us, and together, we will rule the cloud!
 
-![OIG OEFCs8qXJedoMM4uX](https://github.com/mindmotivate/IAM/assets/130941970/9a5d3cd8-de05-4d78-865a-6365a3ad7ffe)
+![malgusiam](https://https://github.com/mindmotivate/HashiCorp_Terraform/blob/gh-pages-malgusimages/malgusiam.jpeg)
 
 
 ## 🌑 About the Dark Side
