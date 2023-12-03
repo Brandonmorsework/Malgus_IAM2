@@ -30,4 +30,4 @@ A skilled Sith Lord and former Jedi Master, DarthTyranus possesses formidable co
 
 A powerful Force user and former apprentice of DarthSidious, DarthMaul is known for his agility and ruthlessness. His IAM user profile grants him limited access to AWS resources, commensurate with his specific tasks and responsibilities.
 
-By creating these IAM users and assigning them appropriate permissions, the AWS infrastructure ensures that each individual has the necessary level of access to perform their tasks effectively without compromising security or granting excessive privileges.
+**By creating these IAM users and assigning them appropriate permissions, the AWS infrastructure ensures that each individual has the necessary level of access to perform their tasks effectively without compromising security or granting excessive privileges.*
