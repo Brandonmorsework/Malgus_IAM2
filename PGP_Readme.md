@@ -1,7 +1,6 @@
 
-# Pretty Good Privacy
+# **Pretty Good Privacy**
 
-🌐 Terraform Registry: ekristen/pgp
 
 [![ekristen/pgp Documentation](https://img.shields.io/badge/ekristen%2Fpgp-Documentation-blue.svg)](https://registry.terraform.io/providers/ekristen/pgp/latest/docs)
 [![ekristen/pgp Registry](https://img.shields.io/badge/ekristen%2Fpgp-Registry-blue.svg)](https://registry.terraform.io/providers/ekristen/pgp/latest)
