@@ -1,16 +1,12 @@
 
-# Disclaimer
-## Warning: Use of this provider will result in secrets being in terraform state in PLAIN TEXT (aka NOT ENCRYPTED). You've been warned.
-
-***There are use cases and situations where you need full access to all values generated within terraform, unfortunately there are some resources that force you to provide a PGP key and it will only encrypt and store those values, then manual commands must be run to decrypt.***
-
-***This provider allows you to generate a PGP or use an existing one, from there it provides encrypt and decrypt data sources to allow you to get access to the data.**
-
+# Pretty Good Privacy
 
 🌐 Terraform Registry: ekristen/pgp
 
 [![ekristen/pgp Documentation](https://img.shields.io/badge/ekristen%2Fpgp-Documentation-blue.svg)](https://registry.terraform.io/providers/ekristen/pgp/latest/docs)
 [![ekristen/pgp Registry](https://img.shields.io/badge/ekristen%2Fpgp-Registry-blue.svg)](https://registry.terraform.io/providers/ekristen/pgp/latest)
+[![gnupg.org](https://img.shields.io/badge/ekristen%2Fpgp-Registry-blue.svg)](https://www.gnupg.org/documentation/index.html)
+[![openpgp/pgp Registry](https://img.shields.io/badge/ekristen%2Fpgp-Registry-blue.svg)](https://www.openpgp.org/)
 
 
 ## Rationale for Using Pre-Built PGP Provider in Terraform
