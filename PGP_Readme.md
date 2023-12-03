@@ -19,6 +19,13 @@
 
 PGP (Pretty Good Privacy) is a widely used cryptographic system that provides confidentiality, integrity, and authentication for digital communications. It is commonly employed to secure email and file transfers, as well as generate digital signatures.
 
+**Terraform User/Developer:** This is you or the person responsible for creating and managing the Terraform scripts. You are the one who writes the code that defines the AWS infrastructure. In this role, you generate or use a PGP key pair.
+
+**AWS:** The cloud service provider, represented in your case by AWS. AWS manages the cloud resources (like EC2 instances, IAM users) based on the instructions provided by your Terraform scripts. AWS doesn't directly exchange PGP keys; instead, it might provide a secure way to store and retrieve sensitive information, like passwords, which are encrypted using your PGP public key.
+
+
+
+
 ### Benefits of Using Pre-Built PGP Provider
 
 Utilizing a pre-built PGP provider like `ekristen\/pgp` within Terraform offers several advantages over manually creating and managing PGP keys:
