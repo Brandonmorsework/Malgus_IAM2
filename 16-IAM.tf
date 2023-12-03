@@ -221,8 +221,9 @@ output "console_link" {
 #}
 
 variable "aws_account_id" {
+
   description = "AWS Account ID"
-  default     = "732504928444"
+  #default     = "your_actual_default_value"
 }
 
 output "password_change_prompt" {
