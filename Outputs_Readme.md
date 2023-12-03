@@ -4,7 +4,7 @@ This code snippet is intended for illustrative purposes only and should not be u
 
 Please feel free to modify the code as needed to suit your specific requirements.
 
-## Understanding the Code Outputs
+## Understanding the Code Outputs (Ex. Darth Sidious)
 
 The provided code defines several outputs that encapsulate and expose sensitive information related to Darth Sidious's AWS credentials. These outputs are intended to be used in other parts of your infrastructure or shared with authorized personnel.
 
