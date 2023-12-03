@@ -203,61 +203,6 @@ locals {
 }
 
 
-resource "aws_iam_access_key" "darth_sidious_access_key" {
-  user = aws_iam_user.darth_sidious.name
-  depends_on = [aws_iam_user.darth_sidious]
-}
-
-resource "pgp_key" "darth_sidious_login_key" {
-  name = "DarthSidious"
-  email = "darth.sidious@example.com"
-  comment = "PGP Key for DarthSidious"
-}
-
-resource "aws_iam_user_login_profile" "darth_sidious_login" {
-  user = aws_iam_user.darth_sidious.name
-  pgp_key = pgp_key.darth_sidious_login_key.public_key_base64
-  password_reset_required = true
-
-  depends_on = [
-    aws_iam_user.darth_sidious,
-    pgp_key.darth_sidious_login_key,
-  ]
-}
-
-data "pgp_decrypt" "darth_sidious_password_decrypt" {
-  ciphertext = aws_iam_user_login_profile.darth_sidious_login.encrypted_password
-  ciphertext_encoding = "base64"
-  private_key = pgp_key.darth_sidious_login_key.private_key
-}
-
-output "credentials" {
-  value = {
-    "DarthSidious" = {
-      "key" = aws_iam_access_key.darth_sidious_access_key.id
-      "secret" = aws_iam_access_key.darth_sidious_access_key.secret
-      "password" = data.pgp_decrypt.darth_sidious_password_decrypt.plaintext
-    }
-  }
-  sensitive = true
-}
-
-output "username" {
-  value = local.users["DarthSidious"].name
-  description = "The username of Darth Sidious."
-}
-
-output "password" {
-  value = data.pgp_decrypt.darth_sidious_password_decrypt.plaintext
-  description = "The Login Password"
-}
-
-
-variable "aws_account_id" {
-  description = "AWS Account ID"
-}
-
-
 locals {
   aws_account_id = data.aws_caller_identity.current.account_id
   aws_region     = "us-west-2"  # Replace with your desired AWS region
@@ -270,13 +215,95 @@ output "console_link" {
   value = local.console_link
 }
 
-resource "local_file" "console_link_txt_file" {
-  content  = local.console_link
-  filename = "console_link.txt"
+#resource "local_file" "console_link_txt_file" {
+#  content  = local.console_link
+#  filename = "console_link.txt"
+#}
+
+variable "aws_account_id" {
+  description = "AWS Account ID"
+  default     = "732504928444"
 }
 
 output "password_change_prompt" {
   value = "You will be prompted to change your password upon your initial login."
+}
+
+
+
+
+
+resource "aws_iam_access_key" "darth_sidious_access_key" {
+  user = aws_iam_user.darth_sidious.name
+  depends_on = [aws_iam_user.darth_sidious]
+}
+
+resource "pgp_key" "darth_sidious_login_key" {
+  name = "DarthSidious"
+  email = "darth.siduos@example.com"
+  comment = "PGP Key for DarthSidious"
+}
+
+resource "aws_iam_user_login_profile" "darth_sidious_login" {
+  user = aws_iam_user.darth_sidious.name
+  pgp_key = pgp_key.darth_sidious_login_key.public_key_base64
+  password_reset_required = true
+
+  depends_on = [
+    aws_iam_user.darth_sidious,
+    pgp_key.darth_sidious_login_key,
+  ]
+
+}
+
+data "pgp_decrypt" "darth_sidious_password_decrypt" {
+  ciphertext = aws_iam_user_login_profile.darth_sidious_login.encrypted_password
+  ciphertext_encoding = "base64"
+  private_key = pgp_key.darth_sidious_login_key.private_key
+}
+
+
+output "darth_sidious_credentials" {
+  value = {
+    "DarthSidious" = {
+      "console_link" = local.console_link
+      "key"      = aws_iam_access_key.darth_sidious_access_key.id
+      "secret"   = aws_iam_access_key.darth_sidious_access_key.secret
+      "password" = data.pgp_decrypt.darth_sidious_password_decrypt.plaintext
+    }
+  }
+  sensitive = true
+}
+
+
+output "darth_sidious_username" {
+  value       = local.users["DarthSidious"].name
+  description = "The username of Darth Sidious."
+}
+
+resource "local_file" "username_txt_file" {
+  content = local.users["DarthSidious"].name
+  filename = "DarthSidious_username.txt"
+}
+
+output "darth_sidious_password" {
+  value       = data.pgp_decrypt.darth_sidious_password_decrypt.plaintext
+  description = "The Login Password"
+  sensitive = true
+}
+
+resource "local_file" "password_txt_file" {
+  content = data.pgp_decrypt.darth_sidious_password_decrypt.plaintext
+  filename = "DarthSidious_password.txt"
+}
+
+resource "local_file" "DarthSidious_combined_credentials" {
+  content = <<EOF
+  Console_Link:  = ${local.console_link}
+  Username: ${local_file.username_txt_file.content}
+  Password: ${data.pgp_decrypt.darth_sidious_password_decrypt.plaintext}
+  EOF
+  filename = "DarthSidious_combined_credentials.txt"
 }
 
 resource "aws_iam_access_key" "darth_vader_access_key" {
@@ -323,9 +350,31 @@ output "darth_vader_username" {
   description = "The username of Darth Vader."
 }
 
+resource "local_file" "DathVader_username_txt_file" {
+  content = local.users["DarthVader"].name
+  filename = "DarthVader_username.txt"
+}
+
+
 output "darth_vader_password" {
   value       = data.pgp_decrypt.darth_vader_password_decrypt.plaintext
   description = "The Login Password"
+  sensitive = true
+}
+
+resource "local_file" "DarthVader_password_txt_file" {
+  content = data.pgp_decrypt.darth_sidious_password_decrypt.plaintext
+  filename = "DarthVader_password.txt"
+}
+
+
+resource "local_file" "DarthVader_combined_credentials" {
+  content = <<EOF
+  Console_Link:  = ${local.console_link}
+  Username: ${local_file.username_txt_file.content}
+  Password: ${data.pgp_decrypt.darth_vader_password_decrypt.plaintext}
+  EOF
+  filename = "DarthVader_combined_credentials.txt"
 }
 
 
@@ -374,10 +423,35 @@ output "darth_tyranus_username" {
   description = "The username of Darth Tyranus."
 }
 
+resource "local_file" "DarthTyranus_username_txt_file" {
+  content = local.users["DarthTyranus"].name
+  filename = "DarthTyranus_username.txt"
+}
+
 output "darth_tyranus_password" {
   value       = data.pgp_decrypt.darth_tyranus_password_decrypt.plaintext
   description = "The Login Password"
+  sensitive = true
 }
+
+resource "local_file" "DarthTyranus_password_txt_file" {
+  content = data.pgp_decrypt.darth_tyranus_password_decrypt.plaintext
+  filename = "DarthTyranus_password.txt"
+}
+
+
+resource "local_file" "DarthTyranus_combined_credentials" {
+  content = <<EOF
+  Console_Link:  = ${local.console_link}
+  Username: ${local_file.username_txt_file.content}
+  Password: ${data.pgp_decrypt.darth_tyranus_password_decrypt.plaintext}
+  EOF
+  filename = "DarthTyranus_combined_credentials.txt"
+}
+
+
+
+
 
 resource "aws_iam_access_key" "darth_maul_access_key" {
   user = aws_iam_user.darth_maul.name
@@ -423,8 +497,28 @@ output "darth_maul_username" {
   value       = local.users["DarthMaul"].name
   description = "The username of Darth Maul."
 }
+resource "local_file" "DarthMaul_username_txt_file" {
+  content = local.users["DarthMaul"].name
+  filename = "DarthMaul_username.txt"
+}
 
 output "darth_maul_password" {
   value       = data.pgp_decrypt.darth_maul_password_decrypt.plaintext
   description = "The Login Password"
+  sensitive = true
 }
+
+resource "local_file" "DarthMaul_password_txt_file" {
+  content = data.pgp_decrypt.darth_maul_password_decrypt.plaintext
+  filename = "DarthMaul_password.txt"
+}
+
+resource "local_file" "DarthMaul_combined_credentials" {
+  content = <<EOF
+  Console_Link:  = ${local.console_link}
+  Username: ${local_file.username_txt_file.content}
+  Password: ${data.pgp_decrypt.darth_maul_password_decrypt.plaintext}
+  EOF
+  filename = "DarthMaul_combined_credentials.txt"
+}
+
