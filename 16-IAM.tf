@@ -282,7 +282,7 @@ output "darth_sidious_username" {
   description = "The username of Darth Sidious."
 }
 
-resource "local_file" "username_txt_file" {
+resource "local_file" "DarthSidious_username_txt_file" {
   content = local.users["DarthSidious"].name
   filename = "DarthSidious_username.txt"
 }
@@ -301,7 +301,7 @@ resource "local_file" "password_txt_file" {
 resource "local_file" "DarthSidious_combined_credentials" {
   content = <<EOF
   Console_Link:  = ${local.console_link}
-  Username: ${local_file.username_txt_file.content}
+  Username: ${local_file.DarthSidious_username_txt_file.content}
   Password: ${data.pgp_decrypt.darth_sidious_password_decrypt.plaintext}
   EOF
   filename = "DarthSidious_combined_credentials.txt"
@@ -351,7 +351,7 @@ output "darth_vader_username" {
   description = "The username of Darth Vader."
 }
 
-resource "local_file" "DathVader_username_txt_file" {
+resource "local_file" "DarthVader_username_txt_file" {
   content = local.users["DarthVader"].name
   filename = "DarthVader_username.txt"
 }
@@ -364,7 +364,7 @@ output "darth_vader_password" {
 }
 
 resource "local_file" "DarthVader_password_txt_file" {
-  content = data.pgp_decrypt.darth_sidious_password_decrypt.plaintext
+  content = data.pgp_decrypt.darth_vader_password_decrypt.plaintext
   filename = "DarthVader_password.txt"
 }
 
@@ -372,7 +372,7 @@ resource "local_file" "DarthVader_password_txt_file" {
 resource "local_file" "DarthVader_combined_credentials" {
   content = <<EOF
   Console_Link:  = ${local.console_link}
-  Username: ${local_file.username_txt_file.content}
+  Username: ${local_file.DarthVader_username_txt_file.content}
   Password: ${data.pgp_decrypt.darth_vader_password_decrypt.plaintext}
   EOF
   filename = "DarthVader_combined_credentials.txt"
@@ -444,7 +444,7 @@ resource "local_file" "DarthTyranus_password_txt_file" {
 resource "local_file" "DarthTyranus_combined_credentials" {
   content = <<EOF
   Console_Link:  = ${local.console_link}
-  Username: ${local_file.username_txt_file.content}
+  Username: ${local_file.DarthTyranus_username_txt_file.content}
   Password: ${data.pgp_decrypt.darth_tyranus_password_decrypt.plaintext}
   EOF
   filename = "DarthTyranus_combined_credentials.txt"
@@ -517,7 +517,7 @@ resource "local_file" "DarthMaul_password_txt_file" {
 resource "local_file" "DarthMaul_combined_credentials" {
   content = <<EOF
   Console_Link:  = ${local.console_link}
-  Username: ${local_file.username_txt_file.content}
+  Username: ${local_file.DarthMaul_username_txt_file.content}
   Password: ${data.pgp_decrypt.darth_maul_password_decrypt.plaintext}
   EOF
   filename = "DarthMaul_combined_credentials.txt"
