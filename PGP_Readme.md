@@ -5,8 +5,8 @@
 
 [![ekristen/pgp Documentation](https://img.shields.io/badge/ekristen%2Fpgp-Documentation-blue.svg)](https://registry.terraform.io/providers/ekristen/pgp/latest/docs)
 [![ekristen/pgp Registry](https://img.shields.io/badge/ekristen%2Fpgp-Registry-blue.svg)](https://registry.terraform.io/providers/ekristen/pgp/latest)
-[![gnupg.org](https://img.shields.io/badge/ekristen%2Fpgp-Registry-blue.svg)](https://www.gnupg.org/documentation/index.html)
-[![openpgp/pgp Registry](https://img.shields.io/badge/ekristen%2Fpgp-Registry-blue.svg)](https://www.openpgp.org/)
+[![gnupg.org](https://img.shields.io/badge/pgp%2Fpgp-gnu-blue.svg)](https://www.gnupg.org/documentation/index.html)
+[![openpgp/pgp Registry](https://img.shields.io/badge/pgp%2Fpgp-open-blue.svg)](https://www.openpgp.org/)
 
 
 ## Rationale for Using Pre-Built PGP Provider in Terraform
